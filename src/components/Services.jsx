@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+/* Fonts updated to Manrope/Inter via Authority Ledger redesign */
 
 const steps = [
   {
@@ -51,16 +52,16 @@ export default function Services() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-[Montserrat] font-semibold text-xs uppercase tracking-[0.2em]">
+            <span className="text-accent font-[Manrope] font-semibold text-xs uppercase tracking-[0.2em]">
               Nuestros servicios
             </span>
             <div className="w-8 h-[2px] bg-accent" />
           </div>
 
-          <h2 className="font-[Montserrat] text-3xl md:text-4xl lg:text-5xl text-navy-900 font-bold tracking-tight mb-6">
+          <h2 className="font-[Manrope] text-3xl md:text-4xl lg:text-5xl text-navy-900 font-bold tracking-tight mb-6">
             Haz crecer tu negocio con Rucly
           </h2>
-          <p className="font-[Poppins] text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className="font-[Inter] text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
             Conectamos empresas con clientes potenciales. Busca información de contacto de cualquier empresa peruana
             o registra tu negocio para que te encuentren.
           </p>
@@ -70,7 +71,7 @@ export default function Services() {
               href="https://wa.me/51961744256?text=Hola, quiero registrar mi empresa en Rucly"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-white font-[Montserrat]
+              className="inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-white font-[Manrope]
                          font-bold px-8 py-4 rounded-full transition-colors text-sm"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -80,7 +81,7 @@ export default function Services() {
             </a>
             <Link
               to="/directorio"
-              className="inline-flex items-center gap-2 text-navy-900 font-[Montserrat] font-bold text-sm
+              className="inline-flex items-center gap-2 text-navy-900 font-[Manrope] font-bold text-sm
                          hover:text-accent transition-colors"
             >
               Buscar empresas
@@ -96,10 +97,10 @@ export default function Services() {
       <section className="bg-white py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-[Montserrat] text-3xl md:text-4xl text-navy-900 font-bold tracking-tight mb-4">
+            <h2 className="font-[Manrope] text-3xl md:text-4xl text-navy-900 font-bold tracking-tight mb-4">
               ¿Cómo funciona?
             </h2>
-            <p className="font-[Poppins] text-gray-500 text-base max-w-xl mx-auto">
+            <p className="font-[Inter] text-gray-500 text-base max-w-xl mx-auto">
               En 4 simples pasos puedes encontrar empresas o hacer que te encuentren.
             </p>
           </div>
@@ -132,12 +133,12 @@ export default function Services() {
                             {step.icon}
                           </div>
                           <div>
-                            <h3 className="font-[Montserrat] font-bold text-navy-900 text-xl">
+                            <h3 className="font-[Manrope] font-bold text-navy-900 text-xl">
                               {step.title}
                             </h3>
                           </div>
                         </div>
-                        <p className={`font-[Poppins] text-gray-500 leading-relaxed text-sm ${
+                        <p className={`font-[Inter] text-gray-500 leading-relaxed text-sm ${
                           isRight ? 'md:text-right' : ''
                         }`}>
                           {step.description}
@@ -148,7 +149,7 @@ export default function Services() {
                     {/* Center node — desktop only */}
                     <div className="hidden md:flex flex-col items-center w-2/12 shrink-0">
                       <div className="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center
-                                      font-[Montserrat] font-bold text-lg shadow-lg shadow-accent/30 z-10">
+                                      font-[Manrope] font-bold text-lg shadow-lg shadow-accent/30 z-10">
                         {step.number}
                       </div>
                     </div>
@@ -159,7 +160,7 @@ export default function Services() {
 
                   {/* Mobile number badge */}
                   <div className="md:hidden absolute left-4 top-8 w-8 h-8 rounded-full bg-accent text-white
-                                  flex items-center justify-center font-[Montserrat] font-bold text-xs z-10">
+                                  flex items-center justify-center font-[Manrope] font-bold text-xs z-10">
                     {step.number}
                   </div>
 
@@ -188,17 +189,17 @@ export default function Services() {
       {/* CTA final */}
       <section className="bg-navy-900 py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="font-[Montserrat] text-3xl md:text-4xl text-white font-bold mb-4">
+          <h2 className="font-[Manrope] text-3xl md:text-4xl text-white font-bold mb-4">
             ¿Listo para empezar?
           </h2>
-          <p className="font-[Poppins] text-white/50 text-base mb-10 max-w-lg mx-auto">
+          <p className="font-[Inter] text-white/50 text-base mb-10 max-w-lg mx-auto">
             Registra tu empresa hoy y empieza a recibir consultas de potenciales clientes en todo el Perú.
           </p>
           <a
             href="https://wa.me/51961744256?text=Hola, quiero registrar mi empresa en Rucly"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-white font-[Montserrat]
+            className="inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-white font-[Manrope]
                        font-bold px-10 py-5 rounded-full transition-colors text-base"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

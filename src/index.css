@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Primary palette — adapted from logo */
   --color-navy-900: #0a3535;
   --color-navy-800: #0d4545;
   --color-navy-700: #115555;
@@ -8,9 +9,22 @@
   --color-accent: #2BBCB3;
   --color-accent-hover: #24a099;
 
+  /* Surface system — tonal layering */
+  --color-surface: #f8faf9;
+  --color-surface-low: #f0f4f3;
+  --color-surface-container: #e8edec;
+  --color-surface-high: #dde3e2;
+  --color-surface-highest: #d2d9d8;
+  --color-on-surface: #1a2e2e;
+  --color-on-surface-muted: #5a706e;
+  --color-outline: #707976;
+  --color-outline-light: #c0c8c4;
+
+  /* Animations */
   --animate-fade-in: fade-in 0.3s ease-out both;
   --animate-slide-up: slide-up 0.4s ease-out both;
   --animate-modal-in: modal-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slide-in-right: slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes fade-in {
@@ -26,4 +40,45 @@
 @keyframes modal-in {
   from { opacity: 0; transform: scale(0.95) translateY(10px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #1a2e2e;
+  background: #f8faf9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ambient shadow utility */
+.shadow-ambient {
+  box-shadow: 0px 24px 48px rgba(25, 28, 27, 0.06);
+}
+
+.shadow-ambient-sm {
+  box-shadow: 0px 12px 24px rgba(25, 28, 27, 0.04);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c8c4;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #707976;
 }

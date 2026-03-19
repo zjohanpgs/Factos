@@ -1,63 +1,93 @@
 export default function About() {
   return (
-    <section className="relative bg-white py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <div className="inline-flex items-center gap-2 mb-6">
-            <div className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-[Montserrat] font-semibold text-xs uppercase tracking-[0.2em]">
-              Sobre nosotros
-            </span>
+    <section className="bg-navy-900 text-white py-16 md:py-28 overflow-hidden">
+      <div className="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* Left — Benefits */}
+        <div className="space-y-8">
+          <div className="inline-block px-4 py-1.5 bg-accent text-white rounded-full text-xs font-black uppercase tracking-widest">
+            Beneficios Premium
           </div>
 
-          <h2 className="font-[Montserrat] font-bold text-3xl md:text-4xl text-navy-900 leading-tight mb-8">
-            El directorio de empresas más completo del Perú
+          <h2 className="text-3xl md:text-5xl font-extrabold font-[Manrope] leading-[1.1] tracking-tight">
+            Haz que tu negocio destaque en el radar.
           </h2>
 
-          <div className="space-y-4 font-[Poppins] text-gray-500 text-base leading-relaxed">
-            <p>
-              En nuestro sitio encontrarás empresas y negocios de todos los sectores,
-              con información de contacto verificada directamente de fuentes oficiales.
-            </p>
-            <p>
-              ¿Eres propietario de un negocio o gerente de una empresa en Perú
-              y todavía no estás en nuestro directorio?
-            </p>
-            <p>
-              Puedes inscribir tu empresa de forma gratuita. Además, por un mínimo costo
-              podrás incluir tu logo, fotos publicitarias, opciones adicionales de contacto
-              y aparecer en los primeros lugares de búsqueda.
-            </p>
-            <p>
-              Estar en directorios como Rucly mejora tu posicionamiento en buscadores como Google,
-              ayudando a que potenciales clientes encuentren tu negocio.
-            </p>
-          </div>
+          <p className="text-white/60 text-lg max-w-lg">
+            Registra tu empresa en Rucly y llega a miles de potenciales clientes que buscan servicios como los tuyos.
+          </p>
+
+          <ul className="space-y-6">
+            {[
+              { icon: 'verified', title: 'Sello de Verificación', desc: 'Tu empresa aparece con badge de verificada, generando confianza inmediata.' },
+              { icon: 'trending_up', title: 'Posicionamiento SEO', desc: 'Mejora tu posición en Google al estar listado en un directorio de autoridad.' },
+              { icon: 'visibility', title: 'Mayor Visibilidad', desc: 'Aparece en los primeros resultados cuando busquen empresas de tu rubro.' },
+            ].map((item) => (
+              <li key={item.title} className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="material-symbols-outlined text-accent text-xl">{item.icon}</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg font-[Manrope]">{item.title}</h4>
+                  <p className="text-white/50 text-sm">{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
 
           <a
-            href="https://wa.me/51961744256?text=Hola, quiero inscribir mi empresa en Rucly"
+            href="https://wa.me/51961744256?text=Hola, quiero registrar mi empresa en Rucly"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-white font-[Montserrat]
-                       font-bold px-8 py-4 rounded-full transition-colors text-sm"
+            className="inline-flex items-center gap-3 bg-accent text-white px-10 py-5 rounded-2xl font-[Manrope] font-black text-lg
+                       hover:scale-105 transition-transform shadow-xl"
           >
-            Inscribe tu empresa gratis
+            Registrar mi Negocio
+            <span className="material-symbols-outlined">rocket_launch</span>
           </a>
         </div>
 
-        <div className="hidden md:block relative">
-          <div className="absolute -inset-4 bg-accent/5 rounded-3xl blur-2xl" />
-          <div className="relative bg-gray-50 rounded-3xl border border-gray-100 p-10 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-24 h-24 mx-auto rounded-full bg-accent/10 flex items-center justify-center mb-6">
-                <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                </svg>
+        {/* Right — Stats card mock */}
+        <div className="relative hidden lg:block">
+          <div className="relative z-10 bg-white text-on-surface p-8 rounded-[2.5rem] shadow-2xl space-y-6 max-w-md ml-auto">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                <img src="/Rucly.png" alt="Rucly" className="h-8 w-auto" />
               </div>
-              <p className="font-[Montserrat] font-bold text-navy-900 text-xl mb-2">Visibilidad nacional</p>
-              <p className="font-[Poppins] text-gray-400 text-sm">Más clientes encuentran tu negocio</p>
+              <div>
+                <h5 className="font-bold font-[Manrope]">Rucly Business</h5>
+                <p className="text-xs text-on-surface-muted">Estadísticas de la última semana</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 bg-surface-low rounded-2xl">
+                <p className="text-[10px] font-bold text-outline uppercase tracking-wider">Visitas</p>
+                <p className="text-2xl font-black text-navy-900 font-[Manrope]">+2.4k</p>
+              </div>
+              <div className="p-4 bg-surface-low rounded-2xl">
+                <p className="text-[10px] font-bold text-outline uppercase tracking-wider">Clics</p>
+                <p className="text-2xl font-black text-accent font-[Manrope]">842</p>
+              </div>
+            </div>
+
+            {/* Mini bar chart */}
+            <div className="h-20 w-full bg-gradient-to-t from-accent/5 to-transparent rounded-xl flex items-end px-2 gap-1.5">
+              {[40, 60, 45, 75, 55, 90, 70, 100, 80, 65].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-t-sm transition-all"
+                  style={{
+                    height: `${h}%`,
+                    background: i === 9 ? '#2BBCB3' : i >= 7 ? '#2BBCB3aa' : '#2BBCB340'
+                  }}
+                />
+              ))}
             </div>
           </div>
+
+          {/* Decorative layers */}
+          <div className="absolute top-8 right-8 w-full h-full bg-accent/5 rounded-[2.5rem] -rotate-3 -z-10" />
+          <div className="absolute -top-10 -left-10 w-48 h-48 bg-accent/10 blur-3xl rounded-full" />
         </div>
       </div>
     </section>
