@@ -39,10 +39,19 @@ export default function Search() {
       const from = page * ITEMS_PER_PAGE
       const to = from + ITEMS_PER_PAGE - 1
 
-      const { data, error } = await supabase
+      const isRuc = /^\d{8,11}$/.test(debouncedQuery.trim())
+
+      let q = supabase
         .from('proveedores')
         .select('nombre, ruc, correo, telefono, fuente')
-        .ilike('nombre', `%${debouncedQuery}%`)
+
+      if (isRuc) {
+        q = q.like('ruc', `${debouncedQuery.trim()}%`)
+      } else {
+        q = q.ilike('nombre', `%${debouncedQuery}%`)
+      }
+
+      const { data, error } = await q
         .order('nombre')
         .range(from, to + 1)
 

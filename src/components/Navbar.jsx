@@ -15,7 +15,6 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 w-full z-50">
-      <BannerBar />
       <nav className="bg-white/80 backdrop-blur-md shadow-ambient transition-colors duration-300">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-8 py-3 md:py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
@@ -94,6 +93,7 @@ export default function Navbar() {
           </div>
         )}
       </nav>
+      <BannerBar />
     </div>
   )
 }
