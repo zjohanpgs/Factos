@@ -1,4 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
+import { supabase } from '../lib/supabase'
+import { useAuth } from '../contexts/AuthContext'
+import StarRating from './StarRating'
+import ReviewForm from './ReviewForm'
+import ReviewList from './ReviewList'
 
 function CopyButton({ text }) {
   const [copied, setCopied] = useState(false)
@@ -22,6 +27,28 @@ function CopyButton({ text }) {
 
 export default function CompanyModal({ company, onClose }) {
   const [visible, setVisible] = useState(false)
+  const { user } = useAuth()
+  const [reviews, setReviews] = useState([])
+  const [avgRating, setAvgRating] = useState(null)
+  const [totalReviews, setTotalReviews] = useState(0)
+  const [myReview, setMyReview] = useState(null)
+
+  const fetchReviews = useCallback(async () => {
+    const [{ data: reviewsData }, { data: ratingData }] = await Promise.all([
+      supabase.from('reviews').select('*').eq('ruc', company.ruc).order('created_at', { ascending: false }),
+      supabase.from('company_ratings').select('*').eq('ruc', company.ruc).single()
+    ])
+    setReviews(reviewsData || [])
+    setAvgRating(ratingData?.avg_rating || null)
+    setTotalReviews(ratingData?.total_reviews || 0)
+    if (user && reviewsData) {
+      setMyReview(reviewsData.find(r => r.user_id === user.id) || null)
+    }
+  }, [company.ruc, user])
+
+  useEffect(() => {
+    fetchReviews()
+  }, [fetchReviews])
 
   useEffect(() => {
     const handleEscape = (e) => { if (e.key === 'Escape') handleClose() }
@@ -174,6 +201,24 @@ export default function CompanyModal({ company, onClose }) {
                 <p className="text-on-surface-muted text-sm">Sin información disponible</p>
               </div>
             )}
+
+            {/* Reviews section */}
+            <div className="px-6 py-5 border-t border-surface-low">
+              <p className="font-[Manrope] text-[11px] font-bold text-accent uppercase tracking-widest mb-4">
+                Calificaciones
+                {totalReviews > 0 && <span className="text-on-surface-muted/40 font-normal ml-1">({totalReviews})</span>}
+              </p>
+
+              <ReviewList reviews={reviews} avgRating={avgRating} totalReviews={totalReviews} />
+
+              <div className="mt-4 pt-4 border-t border-surface-low">
+                <ReviewForm
+                  ruc={company.ruc}
+                  existingReview={myReview}
+                  onReviewSubmitted={fetchReviews}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

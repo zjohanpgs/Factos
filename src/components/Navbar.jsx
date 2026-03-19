@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 import BannerBar from './BannerBar'
 
 export default function Navbar() {
   const location = useLocation()
   const isActive = (path) => location.pathname === path
   const [menuOpen, setMenuOpen] = useState(false)
+  const { user, signInWithGoogle, signOut } = useAuth()
 
   const navLinks = [
     { to: '/', label: 'Inicio' },
@@ -37,6 +39,44 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Auth button */}
+            {user ? (
+              <div className="relative group">
+                <button className="flex items-center gap-2">
+                  {user.user_metadata?.avatar_url ? (
+                    <img src={user.user_metadata.avatar_url} alt="" className="w-8 h-8 rounded-full ring-2 ring-accent/20" />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+                      <span className="text-accent text-sm font-bold">{(user.user_metadata?.full_name || user.email || 'U')[0].toUpperCase()}</span>
+                    </div>
+                  )}
+                </button>
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg shadow-black/10 py-2 opacity-0 invisible
+                                group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <p className="px-4 py-1.5 text-xs font-[Manrope] font-semibold text-on-surface truncate">
+                    {user.user_metadata?.full_name || user.email}
+                  </p>
+                  <hr className="my-1 border-surface-container" />
+                  <button
+                    onClick={signOut}
+                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors font-[Manrope] font-medium"
+                  >
+                    Cerrar sesión
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={signInWithGoogle}
+                className="hidden md:inline-flex items-center gap-2 bg-surface-low hover:bg-surface-container
+                           px-4 py-2 rounded-xl font-[Manrope] font-semibold text-xs text-on-surface-muted
+                           hover:text-on-surface transition-all"
+              >
+                <span className="material-symbols-outlined text-base">person</span>
+                Iniciar sesión
+              </button>
+            )}
+
             {/* CTA — visible on all sizes */}
             <a
               href="https://wa.me/51961744256"
@@ -78,12 +118,22 @@ export default function Navbar() {
                   {label}
                 </Link>
               ))}
+              {!user && (
+                <button
+                  onClick={() => { signInWithGoogle(); setMenuOpen(false) }}
+                  className="mt-1 flex items-center justify-center gap-2 bg-surface-container text-on-surface py-3 px-6 rounded-xl
+                             font-[Manrope] font-semibold text-sm"
+                >
+                  <span className="material-symbols-outlined text-lg">person</span>
+                  Iniciar sesión con Google
+                </button>
+              )}
               <a
                 href="https://wa.me/51961744256"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 flex items-center justify-center gap-2 bg-accent text-white py-3 px-6 rounded-xl
+                className="mt-1 flex items-center justify-center gap-2 bg-accent text-white py-3 px-6 rounded-xl
                            font-[Manrope] font-bold text-sm"
               >
                 <span className="material-symbols-outlined text-lg">call</span>

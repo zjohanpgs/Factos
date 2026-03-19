@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
 import './index.css'
 import App from './App.jsx'
 import Directorio from './pages/Directorio.jsx'
@@ -10,12 +11,14 @@ import Admin from './pages/Admin.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/directorio" element={<Directorio />} />
-        <Route path="/servicios" element={<Servicios />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/directorio" element={<Directorio />} />
+          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )
