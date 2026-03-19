@@ -54,11 +54,25 @@ export default function Registrar() {
     return true
   }
 
-  const handleNext = () => {
+  const [checkingRuc, setCheckingRuc] = useState(false)
+
+  const handleNext = async () => {
     if (step === 1) {
       if (!validateRuc()) return
       if (!form.nombre.trim()) {
         setError('Ingresa la razón social de tu empresa')
+        return
+      }
+      // Check if RUC already exists
+      setCheckingRuc(true)
+      const { data } = await supabase
+        .from('proveedores')
+        .select('ruc, nombre')
+        .eq('ruc', form.ruc.trim())
+        .single()
+      setCheckingRuc(false)
+      if (data) {
+        setError(`Este RUC ya está registrado como "${data.nombre}"`)
         return
       }
       setStep(2)
@@ -395,11 +409,12 @@ export default function Registrar() {
               {step < 3 ? (
                 <button
                   onClick={handleNext}
+                  disabled={checkingRuc}
                   className="flex items-center gap-2 bg-accent text-white font-[Manrope] font-bold text-sm py-4 px-8 rounded-2xl
-                             hover:scale-[1.02] active:scale-[0.98] transition-all"
+                             hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  Siguiente
-                  <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                  {checkingRuc ? 'Verificando RUC...' : 'Siguiente'}
+                  <span className="material-symbols-outlined text-lg">{checkingRuc ? 'hourglass_top' : 'arrow_forward'}</span>
                 </button>
               ) : (
                 <button
