@@ -52,7 +52,7 @@ export default function Navbar() {
                   )}
                 </button>
                 <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg shadow-black/10 py-2 opacity-0 invisible
-                                group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
                   <p className="px-4 py-1.5 text-xs font-[Manrope] font-semibold text-on-surface truncate">
                     {user.user_metadata?.full_name || user.email}
                   </p>
