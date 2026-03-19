@@ -7,6 +7,7 @@ import App from './App.jsx'
 import Directorio from './pages/Directorio.jsx'
 import Servicios from './pages/Servicios.jsx'
 import Admin from './pages/Admin.jsx'
+import Registrar from './pages/Registrar.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/" element={<App />} />
           <Route path="/directorio" element={<Directorio />} />
           <Route path="/servicios" element={<Servicios />} />
+          <Route path="/registrar" element={<Registrar />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
       </AuthProvider>

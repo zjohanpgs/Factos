@@ -35,9 +35,7 @@ export default function About() {
           </ul>
 
           <a
-            href="https://wa.me/51961744256?text=Hola, quiero registrar mi empresa en Rucly"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/registrar"
             className="inline-flex items-center gap-3 bg-accent text-white px-10 py-5 rounded-2xl font-[Manrope] font-black text-lg
                        hover:scale-105 transition-transform shadow-xl"
           >

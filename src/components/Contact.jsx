@@ -39,7 +39,7 @@ export default function Contact() {
             <div className="flex flex-col gap-3">
               <Link to="/directorio" className="text-white/40 text-sm hover:text-white transition-colors">Directorio</Link>
               <Link to="/servicios" className="text-white/40 text-sm hover:text-white transition-colors">Servicios</Link>
-              <a href="https://wa.me/51961744256?text=Quiero registrar mi empresa" target="_blank" rel="noopener noreferrer" className="text-white/40 text-sm hover:text-white transition-colors">Registrar empresa</a>
+              <a href="/registrar" className="text-white/40 text-sm hover:text-white transition-colors">Registrar empresa</a>
             </div>
           </div>
 
