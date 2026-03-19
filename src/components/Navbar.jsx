@@ -13,6 +13,7 @@ export default function Navbar() {
     { to: '/', label: 'Inicio' },
     { to: '/servicios', label: 'Servicios' },
     { to: '/directorio', label: 'Directorio' },
+    { to: '/registrar', label: 'Registrar' },
   ]
 
   return (
