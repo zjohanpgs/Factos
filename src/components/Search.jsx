@@ -42,6 +42,16 @@ export default function Search() {
 
   const hasContact = (company) => company.correo || company.telefono
 
+  const openCompany = async (company) => {
+    const { data } = await supabase
+      .from('proveedores')
+      .select('actividad_economica, tipo_contribuyente, direccion, departamento, provincia, distrito, estado, condicion')
+      .eq('ruc', company.ruc)
+      .single()
+
+    setSelectedCompany({ ...company, ...(data || {}) })
+  }
+
   return (
     <section id="buscar" className="relative py-24 overflow-hidden">
       {/* Background gradient */}
@@ -76,7 +86,6 @@ export default function Search() {
           <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
           <div className="relative flex items-center bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-2xl
                           focus-within:border-accent/50 focus-within:ring-2 focus-within:ring-accent/20 transition-all duration-300">
-            {/* Search icon */}
             <div className="pl-5 pr-2">
               {loading ? (
                 <svg className="w-5 h-5 text-accent animate-spin" viewBox="0 0 24 24" fill="none">
@@ -130,14 +139,13 @@ export default function Search() {
             {results.map((company, i) => (
               <button
                 key={company.ruc}
-                onClick={() => setSelectedCompany(company)}
+                onClick={() => openCompany(company)}
                 className="w-full text-left group/card"
                 style={{ animationDelay: `${i * 40}ms` }}
               >
                 <div className="relative overflow-hidden bg-white/[0.03] border border-white/[0.06] rounded-xl p-5
                                 hover:bg-white/[0.07] hover:border-accent/30
                                 transition-all duration-300 animate-slide-up">
-                  {/* Hover glow */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl
                                   opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
 
@@ -159,7 +167,6 @@ export default function Search() {
                       </p>
                     </div>
 
-                    {/* Arrow */}
                     <div className="shrink-0 w-9 h-9 rounded-full bg-white/5 flex items-center justify-center
                                     group-hover/card:bg-accent/20 group-hover/card:text-accent
                                     transition-all duration-300 text-white/20">
@@ -173,21 +180,6 @@ export default function Search() {
             ))}
           </div>
         )}
-
-        {/* Link to full directory */}
-        <div className="text-center mt-8">
-          <Link
-            to="/directorio"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:border-accent/40
-                       text-white/50 hover:text-accent font-[Montserrat] font-semibold text-sm transition-all duration-300
-                       hover:bg-accent/5"
-          >
-            Ver directorio completo
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
-        </div>
 
         {/* Empty state */}
         {hasSearched && !loading && results.length === 0 && debouncedQuery.length >= 3 && (
@@ -204,7 +196,7 @@ export default function Search() {
         )}
       </div>
 
-      {/* Company detail modal */}
+      {/* Company detail panel */}
       {selectedCompany && (
         <CompanyModal
           company={selectedCompany}

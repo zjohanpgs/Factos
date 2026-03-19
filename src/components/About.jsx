@@ -29,13 +29,13 @@ export default function About() {
               y aparecer en los primeros lugares de búsqueda.
             </p>
             <p>
-              Estar en directorios como Factos mejora tu posicionamiento en buscadores como Google,
+              Estar en directorios como Rucly mejora tu posicionamiento en buscadores como Google,
               ayudando a que potenciales clientes encuentren tu negocio.
             </p>
           </div>
 
           <a
-            href="https://wa.me/51932332576?text=Hola, quiero inscribir mi empresa en Factos"
+            href="https://wa.me/51961744256?text=Hola, quiero inscribir mi empresa en Rucly"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-white font-[Montserrat]

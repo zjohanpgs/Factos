@@ -42,7 +42,7 @@ export default function BannerBar() {
     <div
       className="relative overflow-hidden transition-all duration-500"
       style={{
-        backgroundColor: banner.color_fondo || '#e94d24',
+        backgroundColor: banner.color_fondo || '#2BBCB3',
         backgroundImage: banner.imagen_fondo ? `url(${banner.imagen_fondo})` : undefined,
         backgroundSize: 'cover',
         backgroundPosition: 'center',

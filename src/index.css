@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-900: #0a1628;
-  --color-navy-800: #0f1f3d;
-  --color-navy-700: #15263e;
-  --color-navy-600: #1c3454;
-  --color-accent: #e94d24;
-  --color-accent-hover: #d4411b;
+  --color-navy-900: #0a3535;
+  --color-navy-800: #0d4545;
+  --color-navy-700: #115555;
+  --color-navy-600: #156565;
+  --color-accent: #2BBCB3;
+  --color-accent-hover: #24a099;
 
   --animate-fade-in: fade-in 0.3s ease-out both;
   --animate-slide-up: slide-up 0.4s ease-out both;

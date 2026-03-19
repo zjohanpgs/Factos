@@ -4,23 +4,16 @@ export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden bg-gray-50">
       {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-orange-50/30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-teal-50/30" />
 
       {/* Decorative elements */}
       <div className="absolute top-20 right-0 w-[500px] h-[500px] rounded-full bg-accent/5 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-navy-900/5 blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-44 pb-32 grid lg:grid-cols-2 gap-16 items-center">
         {/* Left: Content */}
         <div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 mb-8">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <span className="text-accent font-[Montserrat] font-semibold text-xs uppercase tracking-wider">
-              Directorio de empresas
-            </span>
-          </div>
-
-          <h1 className="font-[Montserrat] font-black text-4xl md:text-5xl lg:text-6xl text-navy-900 leading-[1.1] mb-6">
+<h1 className="font-[Montserrat] font-black text-2xl md:text-3xl lg:text-4xl text-navy-900 leading-[1.1] mb-6">
             Directorio de empresas del Perú
           </h1>
 
@@ -32,7 +25,7 @@ export default function Hero() {
 
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="https://wa.me/51932332576?text=Hola, quiero registrar mi empresa en Factos"
+              href="https://wa.me/51961744256?text=Hola, quiero registrar mi empresa en Rucly"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-white font-[Montserrat]
@@ -78,7 +71,7 @@ export default function Hero() {
             {/* Feature highlights */}
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="w-10 h-10 mx-auto rounded-xl bg-orange-50 flex items-center justify-center mb-2">
+                <div className="w-10 h-10 mx-auto rounded-xl bg-teal-50 flex items-center justify-center mb-2">
                   <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                   </svg>

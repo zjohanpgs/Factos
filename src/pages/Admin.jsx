@@ -8,7 +8,7 @@ const EMPTY_BANNER = {
   enlace: '',
   logo_url: '',
   imagen_fondo: '',
-  color_fondo: '#e94d24',
+  color_fondo: '#2BBCB3',
   color_texto: '#ffffff',
   fecha_inicio: '',
   fecha_fin: '',
@@ -91,12 +91,7 @@ export default function Admin() {
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full border-2 border-accent flex items-center justify-center">
-                <span className="text-accent font-bold text-lg font-[Montserrat]">F</span>
-              </div>
-              <span className="text-white font-[Montserrat] font-bold text-xl tracking-wide">
-                Factos
-              </span>
+              <img src="/Rucly.png" alt="Rucly" className="h-20 w-auto brightness-0 invert" />
             </Link>
             <span className="text-white/30 font-[Poppins] text-sm">/ Admin</span>
           </div>
@@ -289,7 +284,7 @@ export default function Admin() {
               <div
                 className="rounded-xl overflow-hidden"
                 style={{
-                  backgroundColor: editing.color_fondo || '#e94d24',
+                  backgroundColor: editing.color_fondo || '#2BBCB3',
                   backgroundImage: editing.imagen_fondo ? `url(${editing.imagen_fondo})` : undefined,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
@@ -454,8 +449,8 @@ export default function Admin() {
           transition: border-color 0.2s;
         }
         .input-field:focus {
-          border-color: #e94d24;
-          box-shadow: 0 0 0 3px rgba(233, 77, 36, 0.1);
+          border-color: #2BBCB3;
+          box-shadow: 0 0 0 3px rgba(43, 188, 179, 0.1);
         }
         .input-field::placeholder {
           color: #9ca3af;

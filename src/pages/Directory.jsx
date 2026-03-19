@@ -67,41 +67,38 @@ export default function Directory() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-      <nav className="bg-navy-900 border-b border-navy-700">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full border-2 border-accent flex items-center justify-center">
-              <span className="text-accent font-bold text-lg font-[Montserrat]">F</span>
-            </div>
-            <span className="text-white font-[Montserrat] font-bold text-xl tracking-wide">
-              Factos
-            </span>
-            <span className="text-white/30 font-[Poppins] text-sm ml-2 hidden sm:inline">
-              Directorio
-            </span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              to="/"
-              className="text-white/60 hover:text-white font-[Poppins] text-sm transition-colors"
-            >
-              Volver al inicio
+      <div className="fixed top-0 w-full z-50">
+        <BannerBar />
+        <nav className="bg-navy-900/90 backdrop-blur-md border-b border-white/5">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-2">
+              <img src="/Rucly.png" alt="Rucly" className="h-20 w-auto brightness-0 invert" />
             </Link>
-            <a
-              href="https://wa.me/51932332576"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover
-                         text-white font-[Montserrat] font-bold text-sm transition-colors"
-            >
-              Contáctanos
-            </a>
-          </div>
-        </div>
-      </nav>
 
-      {/* Dynamic banner bar */}
-      <BannerBar />
+            <div className="hidden md:flex items-center gap-8">
+              <Link to="/" className="text-white/60 hover:text-white font-[Montserrat] font-semibold text-sm tracking-wide transition-colors">Inicio</Link>
+              <Link to="/buscar" className="text-white/60 hover:text-white font-[Montserrat] font-semibold text-sm tracking-wide transition-colors">Buscar</Link>
+              <Link to="/servicios" className="text-white/60 hover:text-white font-[Montserrat] font-semibold text-sm tracking-wide transition-colors">Servicios</Link>
+              <Link to="/directorio" className="text-white font-[Montserrat] font-semibold text-sm tracking-wide">Directorio</Link>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <a
+                href="https://wa.me/51961744256"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-accent text-accent
+                           hover:bg-accent hover:text-white font-[Montserrat] font-bold text-sm transition-all duration-300"
+              >
+                Contáctanos
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      {/* Spacer for fixed navbar */}
+      <div className="pt-36" />
 
       {/* Hero gradient */}
       <div className="relative bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 overflow-hidden">
@@ -337,15 +334,13 @@ export default function Directory() {
       <footer className="mt-16 bg-navy-900 border-t border-navy-700">
         <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full border-2 border-accent flex items-center justify-center">
-              <span className="text-accent font-bold text-sm font-[Montserrat]">F</span>
-            </div>
+            <img src="/Rucly.png" alt="Rucly" className="h-16 w-auto brightness-0 invert" />
             <span className="text-white/60 font-[Poppins] text-sm">
-              Factos — Directorio de empresas peruanas
+              Rucly — Directorio de empresas peruanas
             </span>
           </div>
           <a
-            href="https://wa.me/51932332576"
+            href="https://wa.me/51961744256"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/40 hover:text-accent font-[Poppins] text-sm transition-colors"

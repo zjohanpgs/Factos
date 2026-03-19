@@ -32,7 +32,7 @@ const OUTPUT_DIR = path.join(__dirname, 'output');
 
 // ─── Configuración ───────────────────────────────────────────
 const API_TOKEN = process.env.SUNAT_API_TOKEN || '';
-const API_BASE = 'https://api.apis.net.pe/v2/sunat/ruc';
+const API_BASE = 'https://api.decolecta.com/v1/sunat/ruc/full';
 const CONCURRENCY = API_TOKEN ? 5 : 1;         // Con token: 5 paralelas, sin token: 1
 const DELAY_BETWEEN_BATCHES = API_TOKEN ? 200 : 3000; // ms entre lotes
 const BATCH_LOG_INTERVAL = 100;                 // Log cada N registros
@@ -81,9 +81,9 @@ async function fetchSunatData(ruc, retries = 3) {
       // La API devuelve los datos directamente
       return {
         ruc: ruc,
-        actividad_economica: data.actividadEconomica || '',
-        tipo_contribuyente: data.tipoContribuyente || '',
-        fecha_inscripcion: data.fechaInscripcion || '',
+        actividad_economica: data.actividad_economica || '',
+        tipo_contribuyente: data.tipo || '',
+        fecha_inscripcion: data.fecha_inscripcion || '',
         direccion: data.direccion || '',
         departamento: data.departamento || '',
         provincia: data.provincia || '',
