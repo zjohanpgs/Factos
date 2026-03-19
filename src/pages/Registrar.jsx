@@ -36,43 +36,52 @@ export default function Registrar() {
     correo: '',
   })
 
+  const [checkingRuc, setCheckingRuc] = useState(false)
+  const [rucValid, setRucValid] = useState(false)
+  const [rucError, setRucError] = useState('')
+
   const updateField = (field, value) => {
     setForm(prev => ({ ...prev, [field]: value }))
     setError('')
   }
 
-  const validateRuc = () => {
-    const ruc = form.ruc.trim()
-    if (!/^\d{11}$/.test(ruc)) {
-      setError('El RUC debe tener exactamente 11 dígitos')
-      return false
-    }
-    if (!ruc.startsWith('10') && !ruc.startsWith('20') && !ruc.startsWith('15') && !ruc.startsWith('17')) {
-      setError('El RUC no tiene un prefijo válido')
-      return false
-    }
-    return true
-  }
+  const handleRucChange = async (value) => {
+    const ruc = value.replace(/\D/g, '')
+    setForm(prev => ({ ...prev, ruc }))
+    setRucValid(false)
+    setRucError('')
 
-  const [checkingRuc, setCheckingRuc] = useState(false)
+    if (ruc.length < 11) return
+    if (ruc.length !== 11) return
+
+    if (!ruc.startsWith('10') && !ruc.startsWith('20') && !ruc.startsWith('15') && !ruc.startsWith('17')) {
+      setRucError('El RUC no tiene un prefijo válido')
+      return
+    }
+
+    setCheckingRuc(true)
+    const { data } = await supabase
+      .from('proveedores')
+      .select('ruc, nombre')
+      .eq('ruc', ruc)
+      .single()
+    setCheckingRuc(false)
+
+    if (data) {
+      setRucError(`Este RUC ya está registrado como "${data.nombre}"`)
+    } else {
+      setRucValid(true)
+    }
+  }
 
   const handleNext = async () => {
     if (step === 1) {
-      if (!validateRuc()) return
-      if (!form.nombre.trim()) {
-        setError('Ingresa la razón social de tu empresa')
+      if (!rucValid) {
+        setError('Ingresa un RUC válido y disponible')
         return
       }
-      // Check if RUC already exists
-      setCheckingRuc(true)
-      const { data } = await supabase
-        .from('proveedores')
-        .select('ruc, nombre')
-        .eq('ruc', form.ruc.trim())
-        .single()
-      setCheckingRuc(false)
-      if (data) {
-        setError(`Este RUC ya está registrado como "${data.nombre}"`)
+      if (!form.nombre.trim()) {
+        setError('Ingresa la razón social de tu empresa')
         return
       }
       setStep(2)
@@ -248,13 +257,33 @@ export default function Registrar() {
                     type="text"
                     maxLength={11}
                     value={form.ruc}
-                    onChange={e => updateField('ruc', e.target.value.replace(/\D/g, ''))}
+                    onChange={e => handleRucChange(e.target.value)}
                     placeholder="20XXXXXXXXX"
-                    className="w-full px-5 py-4 bg-surface-low rounded-2xl text-navy-900 placeholder:text-outline/40 focus:outline-none focus:ring-2 focus:ring-accent font-mono text-lg"
+                    className={`w-full px-5 py-4 bg-surface-low rounded-2xl text-navy-900 placeholder:text-outline/40 focus:outline-none focus:ring-2 font-mono text-lg ${
+                      rucError ? 'focus:ring-red-400 ring-2 ring-red-300' : rucValid ? 'focus:ring-green-400 ring-2 ring-green-300' : 'focus:ring-accent'
+                    }`}
                   />
+                  {checkingRuc && (
+                    <p className="text-xs text-accent mt-2 flex items-center gap-1">
+                      <span className="material-symbols-outlined text-sm animate-spin">hourglass_top</span>
+                      Verificando RUC...
+                    </p>
+                  )}
+                  {rucError && (
+                    <p className="text-xs text-red-500 mt-2 flex items-center gap-1">
+                      <span className="material-symbols-outlined text-sm">error</span>
+                      {rucError}
+                    </p>
+                  )}
+                  {rucValid && (
+                    <p className="text-xs text-green-600 mt-2 flex items-center gap-1">
+                      <span className="material-symbols-outlined text-sm">check_circle</span>
+                      RUC disponible
+                    </p>
+                  )}
                 </div>
 
-                <div>
+                <div className={!rucValid ? 'opacity-40 pointer-events-none' : ''}>
                   <label className="block text-sm font-medium text-navy-900 mb-2">Razón Social *</label>
                   <input
                     type="text"
@@ -265,7 +294,7 @@ export default function Registrar() {
                   />
                 </div>
 
-                <div>
+                <div className={!rucValid ? 'opacity-40 pointer-events-none' : ''}>
                   <label className="block text-sm font-medium text-navy-900 mb-2">Tipo de Contribuyente</label>
                   <select
                     value={form.tipo_contribuyente}
@@ -277,7 +306,7 @@ export default function Registrar() {
                   </select>
                 </div>
 
-                <div>
+                <div className={!rucValid ? 'opacity-40 pointer-events-none' : ''}>
                   <label className="block text-sm font-medium text-navy-900 mb-2">Actividad Económica</label>
                   <input
                     type="text"
@@ -409,12 +438,11 @@ export default function Registrar() {
               {step < 3 ? (
                 <button
                   onClick={handleNext}
-                  disabled={checkingRuc}
                   className="flex items-center gap-2 bg-accent text-white font-[Manrope] font-bold text-sm py-4 px-8 rounded-2xl
-                             hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none"
+                             hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
-                  {checkingRuc ? 'Verificando RUC...' : 'Siguiente'}
-                  <span className="material-symbols-outlined text-lg">{checkingRuc ? 'hourglass_top' : 'arrow_forward'}</span>
+                  Siguiente
+                  <span className="material-symbols-outlined text-lg">arrow_forward</span>
                 </button>
               ) : (
                 <button
